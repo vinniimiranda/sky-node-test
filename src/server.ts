@@ -1,4 +1,5 @@
 import express from 'express';
+import routes from './routes'
 
 class AppServer {
   server: express.Application;
@@ -6,9 +7,13 @@ class AppServer {
   constructor() {
     this.server = express();
     this.middlewares();
+    this.routes();
     this.excpetionHandling();
   }
 
+  private routes() {
+    this.server.use(routes)
+  }
 
   private middlewares() {
     this.server.use(express.json());
