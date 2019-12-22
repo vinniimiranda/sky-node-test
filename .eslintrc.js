@@ -22,5 +22,9 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    "no-param-reassign": "off",
+    "camelcase": "off",
+    "@typescript-eslint/camelcase": ["error", { "properties": "never" }],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "next"}]
   },
 };

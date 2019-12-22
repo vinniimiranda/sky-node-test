@@ -1,11 +1,13 @@
 import express from 'express'
 import routes from './routes'
+import mongoose from 'mongoose'
 
 class AppServer {
   server: express.Application;
 
   constructor () {
     this.server = express()
+    this.database()
     this.middlewares()
     this.routes()
     this.excpetionHandling()
@@ -17,6 +19,13 @@ class AppServer {
 
   private middlewares (): void {
     this.server.use(express.json())
+  }
+
+  private database (): void {
+    mongoose.connect('mongodb://localhost:27017/sky-node-test', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    })
   }
 
   excpetionHandling (): void {
