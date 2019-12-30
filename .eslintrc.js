@@ -8,6 +8,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'prettier/@typescript-eslint',
     'standard',
+    "plugin:jest/recommended"
   ],
   globals: {
     Atomics: 'readonly',
@@ -20,11 +21,17 @@ module.exports = {
   },
   plugins: [
     '@typescript-eslint',
+    "jest"
   ],
   rules: {
     "no-param-reassign": "off",
     "camelcase": "off",
     "@typescript-eslint/camelcase": ["error", { "properties": "never" }],
-    "no-unused-vars": ["error", { "argsIgnorePattern": "next"}]
+    "no-unused-vars": ["error", { "argsIgnorePattern": "next"}],
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
   },
 };
