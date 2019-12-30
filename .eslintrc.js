@@ -25,6 +25,7 @@ module.exports = {
   ],
   rules: {
     "no-param-reassign": "off",
+    "@typescript-eslint/ban-ts-ignore": "off",
     "camelcase": "off",
     "@typescript-eslint/camelcase": ["error", { "properties": "never" }],
     "no-unused-vars": ["error", { "argsIgnorePattern": "next"}],
