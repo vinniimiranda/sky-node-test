@@ -17,42 +17,42 @@ class SignUpController {
   }
 
   private async store (req: Request, res: Response): Promise<any> {
-    try {
-      const { nome, email, senha, telefones } = req.body
+    const { nome, email, senha, telefones } = req.body
 
-      const userExists = await User.findOne({
-        email
+    if (!nome || !email || !senha || telefones.length === 0) {
+      return res.status(400).json({
+        mensagem: 'Os campos "nome", "email", "senha" e "telefone" são obrigatórios'
       })
-
-      if (userExists) {
-        return res.status(400).json({
-          mensagem: 'E-mail já existente'
-        })
-      }
-
-      const user = await User.create({
-        nome,
-        email,
-        senha: await bcryptjs.hash(senha, 8),
-        telefones,
-
-        ultimo_login: new Date()
-      })
-
-      const token = jwt.sign({ user_id: user.id }, 'sky-node-ts', {
-        expiresIn: '30m'
-      })
-
-      await User.updateOne({ _id: user.id }, { token })
-
-      const userData = await User.findById(user.id).select('-senha')
-
-      res.status(201).json(userData)
-    } catch (error) {
-      console.log(error)
-
-      return res.status(500).json({ mensagem: 'Houve um erro' })
     }
+
+    const userExists = await User.findOne({
+      email
+    })
+
+    if (userExists) {
+      return res.status(400).json({
+        mensagem: 'E-mail já existente'
+      })
+    }
+
+    const user = await User.create({
+      nome,
+      email,
+      senha: await bcryptjs.hash(senha, 8),
+      telefones,
+
+      ultimo_login: new Date()
+    })
+
+    const token = jwt.sign({ user_id: user.id }, 'sky-node-ts', {
+      expiresIn: '30m'
+    })
+
+    await User.updateOne({ _id: user.id }, { token })
+
+    const userData = await User.findById(user.id).select('-senha')
+
+    res.status(201).json(userData)
   }
 }
 

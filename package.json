@@ -38,5 +38,15 @@
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "ts-node": "^8.5.4"
+  },
+  "scripts": {
+    "prestart": "yarn docker:up & yarn build",
+    "start": "node server/index",
+    "build": "yarn tsc",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker stop sky-node-test_db_mongo_1 & docker system prune --volumes -f",
+    "pretest": "yarn docker:up",
+    "test": "jest",
+    "posttest": "yarn docker:down"
   }
 }

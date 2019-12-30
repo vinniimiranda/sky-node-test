@@ -19,6 +19,12 @@ class SignInController {
   private async signIn (req: Request, res: Response): Promise<any> {
     const { email, senha } = req.body
 
+    if (!email || !senha) {
+      return res.status(400).json({
+        mensagem: 'Os campos "email" e "senha" são obrigatórios'
+      })
+    }
+
     const user = await User.findOne({
       email
     })
