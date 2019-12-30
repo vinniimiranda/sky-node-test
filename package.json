@@ -40,6 +40,7 @@
   "scripts": {
     "prestart": "yarn docker:up & yarn build",
     "start": "node server/index",
+    "install": "npm run install",
     "build": "yarn tsc",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker stop sky-node-test_db_mongo_1 & docker system prune --volumes -f",
