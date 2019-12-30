@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist",
+    "outDir": "./server",
     "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
