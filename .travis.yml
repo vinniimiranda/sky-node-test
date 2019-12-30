@@ -9,7 +9,7 @@ env:
   DOCKER_COMPOSE_VERSION: 1.24.1
 
 node_js:
-  - node
+  - "10"
 
 script:
   - yarn test
