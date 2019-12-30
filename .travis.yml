@@ -11,6 +11,8 @@ env:
 node_js:
   - "10"
 
+install: npm run install
+
 script:
   - yarn test
 
